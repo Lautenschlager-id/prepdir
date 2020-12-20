@@ -23,19 +23,21 @@ do
 	local conditionalSymbols = {
 		['&'] = "and",
 		['|'] = "or",
-		['!'] = "not "
+		['!'] = "not ",
+		["!="] = "~="
 	}
 	local symbolReplace = "[&|!]"
 
 	local prefix = "()\t*@#"
 	local endOfLine = "[\r\n]+()"
+	local expression = "([%w_ %+%-%*/%[%]%(%){}&|!%.~=]+)"
 
 	local tokenCallbacks = { }
 	local tokenMatchers = {
-		IF     = prefix .. "IF ([%w_ %+%-%*/%[%]%(%){}&|!%.=]+)"   .. endOfLine,
-		ELIF   = prefix .. "ELIF ([%w_ %+%-%*/%[%]%(%){}&|!%.=]+)" .. endOfLine,
-		ELSE   = prefix .. "ELSE"                                  .. endOfLine,
-		ENDIF  = prefix .. "ENDIF"                                 .. endOfLine,
+		IF     = prefix .. "IF "   .. expression .. endOfLine,
+		ELIF   = prefix .. "ELIF " .. expression .. endOfLine,
+		ELSE   = prefix .. "ELSE"  .. endOfLine,
+		ENDIF  = prefix .. "ENDIF" .. endOfLine,
 		__NEXT = prefix .. "(%S+)"
 	}
 
