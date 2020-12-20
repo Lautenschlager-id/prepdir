@@ -41,8 +41,7 @@ do
 		__NEXT = prefix .. "(%S+)"
 	}
 
-	local chunks = { }
-	local READING_CHUNK = false
+	local READING_CHUNK, chunks = false
 
 	tokenCallbacks.IF = function(src, endPos)
 		if READING_CHUNK then return end
@@ -125,6 +124,8 @@ do
 	end
 
 	local parser = function(src)
+		READING_CHUNK, chunks = false, { }
+
 		local endPos, ifPos
 		repeat
 			-- Opens the conditional
