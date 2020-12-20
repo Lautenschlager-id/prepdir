@@ -30,7 +30,7 @@ do
 
 	local prefix = "()\t*@#"
 	local endOfLine = "[\r\n]+()"
-	local expression = "([%w_ %+%-%*/%[%]%(%){}&|!%.~=]+)"
+	local expression = "([%w_ %+%-%*/%[%]%(%){}&|!%.~='\"]+)"
 
 	local tokenCallbacks = { }
 	local tokenMatchers = {

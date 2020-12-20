@@ -1,5 +1,5 @@
 return {
-	version = "0.1.1",
+	version = "0.1.2",
 
 	name = "Lautenschlager-id/prepdir",
 	author = "Lautenschlager-id",
