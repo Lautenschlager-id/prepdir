@@ -26,10 +26,10 @@ do
 		['!'] = "not ",
 		["!="] = "~="
 	}
-	local symbolReplace = "[&|!]"
+	local symbolReplace = "[&|!]=?"
 
 	local prefix = "()\t*@#"
-	local endOfLine = "[\r\n]+()"
+	local endOfLine = "\r?\n()"
 	local expression = "([%w_ %+%-%*/%[%]%(%){}&|!%.~='\"]+)"
 
 	local tokenCallbacks = { }
@@ -218,14 +218,14 @@ do
 
 	prepdir = function(src)
 		-- Retrieve
-		src = "\n" .. src .. "\n" -- For pattern matching
+		src = src .. "\n" -- For pattern matching
 
 		-- Get chunks
 		parser(src)
 
 		src = matcher(src)
 
-		return sub(src, 2, -2)
+		return sub(src, 1, -2)
 	end
 end
 
